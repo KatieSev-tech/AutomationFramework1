@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="MyFork" verbose="1" >
+    <test name="Functional" >
+        <classes>
+            <class name ="testcases.SignUpTest"/>
+        </classes>
+    </test>
+</suite>
