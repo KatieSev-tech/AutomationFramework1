@@ -43,7 +43,7 @@ public class SignUpPage extends BaseMain {
         driver.findElement(By.id(emailField)).sendKeys(emailInput);
         driver.findElement(By.id(passwordField)).sendKeys(passwordInput);
         driver.findElement(By.id(passwordConfirmField)).sendKeys(passwordInput);
-        driver.findElement(By.xpath(signUpButton)).submit();
+        driver.findElement(By.xpath(signUpButton)).click();
 
 
     }
