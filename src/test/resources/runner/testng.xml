@@ -3,7 +3,10 @@
 <suite name="MyFork" verbose="1" >
     <test name="Functional" >
         <classes>
+            <class name ="testcases.ArrayDropDown"/>
             <class name ="testcases.SignUpTest"/>
+            <class name ="testcases.LoginTest"/>
+
         </classes>
     </test>
 </suite>

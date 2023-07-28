@@ -34,7 +34,6 @@
                         <suiteXmlFiles>
                             <suiteXmlFile>src/test/resources/runner/testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
-                        <reportsDirectory>./test-output/${timestamp}</reportsDirectory>
                     </configuration>
                 </plugin>
             </plugins>
