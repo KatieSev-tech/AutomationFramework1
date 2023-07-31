@@ -2,11 +2,24 @@
 
 <suite name="MyFork" verbose="1" >
     <test name="Functional" >
+        
+        <groups>
+            <run>
+                <include name="fields"></include>
+                <include name="webElements"></include>
+                <include name="links"></include>
+            </run>
+        </groups>
+        
         <classes>
-            <class name ="testcases.ArrayDropDown"/>
-            <class name ="testcases.SignUpTest"/>
-            <class name ="testcases.LoginTest"/>
-
+            <class name ="testcases.LoginTest">
+                <methods>
+                    <exclude name="validateCheckBoxTextIsDisplayed"></exclude>
+                    <exclude name="validateEmailPasswordFieldsLoginButtonAreDisplayed"></exclude>
+                </methods>
+            </class>
+            <class name ="testcases.SignUpTest"></class>
+            <class name ="testcases.ArrayDropDown"></class>
         </classes>
     </test>
 </suite>

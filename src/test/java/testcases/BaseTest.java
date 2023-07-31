@@ -16,7 +16,7 @@ public class BaseTest {
     LoginPage loginPage;
     SignUpPage signUpPage;
 
-    @BeforeMethod
+    @BeforeMethod(groups={"fields","links","webElements"}, alwaysRun = true)
     public void SetUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/GitHub/SeleniumFramework/src/test/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();
@@ -30,7 +30,7 @@ public class BaseTest {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups={"fields","links","webElements"}, alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
             driver.close();

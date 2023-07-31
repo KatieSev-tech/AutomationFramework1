@@ -11,7 +11,7 @@ import java.util.List;
 public class ArrayDropDown extends BaseTest{
 
 
-    @Test
+    @Test(priority = 2, groups ={"webElements"})
 
     public void jobTitleDropdown () {
         homePage.openSignUpPage();

@@ -111,6 +111,11 @@ public class LoginPage extends BaseMain{
         softAssert.assertFalse(errorMessageText.contains("Wrong password"), "Wrong email should displayed");
         softAssert.assertAll();
 
+    }
+
+    public void fillTheSignInForm( String username, String password){
+        driver.findElement(By.id(EmailField)).sendKeys("username");
+        driver.findElement(By.id(passwordField)).sendKeys("password");
 
     }
 }
