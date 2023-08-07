@@ -44,15 +44,15 @@ public class BaseMain {
 
     }
 
-    public void windowHandling () {
+    public void tabHandler (int tab) {
         List<String> tabHandler = new ArrayList<>(driver.getWindowHandles());
-        int tab = tabHandler.size();
+        //int tab = tabHandler.size();
         driver.switchTo().window(tabHandler.get(tab));
         driver.navigate().to(tabHandler.get(tab));
     }
 
 
-    public void scrollingPage (){
+    public void scrollingPage (int pixels){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0," + pixels + ")", "");
     }

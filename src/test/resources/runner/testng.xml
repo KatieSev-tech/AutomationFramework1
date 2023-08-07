@@ -8,18 +8,18 @@
                 <include name="fields"></include>
                 <include name="webElements"></include>
                 <include name="links"></include>
+                <include name="scenario1"></include>
             </run>
         </groups>
         
         <classes>
-            <class name ="testcases.LoginTest">
+            <class name ="testcases.EndToEndTestCase">
                 <methods>
-                    <exclude name="validateCheckBoxTextIsDisplayed"></exclude>
-                    <exclude name="validateEmailPasswordFieldsLoginButtonAreDisplayed"></exclude>
+                    <exclude name="historySectionAvailableForLoggedInUsers"></exclude>
+                    <exclude name="allCourseGallerySectionsAreDisplayed"></exclude>
                 </methods>
             </class>
-            <class name ="testcases.SignUpTest"></class>
-            <class name ="testcases.ArrayDropDown"></class>
+
         </classes>
     </test>
 </suite>

@@ -16,6 +16,7 @@ public class HomePage extends BaseMain{
     public String myForkURL = "https://test.my-fork.com/";
     public String SignInButton = "//div[@id='log-in-button']/..";
     public String SignUpButton = "//div[@id='sign-up-button']/..";
+    public String CourseGalleryButton = "//div[text()='Course Gallery']/..";
 
     public void openSignInPage(){
 
@@ -28,5 +29,10 @@ public class HomePage extends BaseMain{
     public void openSignUpPage(){
         driver.get(myForkURL);
         driver.findElement(By.xpath(SignUpButton)).click();
+    }
+
+    public void openCourseGalleryPage(){
+        driver.get(myForkURL);
+        driver.findElement(By.xpath(CourseGalleryButton)).click();
     }
 }

@@ -18,8 +18,8 @@ public class LoginPage extends BaseMain{
 
     public String EmailField = "email";
     public String passwordField = "password";
-    private String validEmail = "katietest@gmail.com";
-    private String validPassword = "Password1006!";
+    private String validEmail = "testing@my-fork.com";
+    private String validPassword = "Password";
     private String invalidEmail = "test@gmail.com";
     private String invalidPassword = "password";
     public String LogInButtonLoginPage = "//button[@type ='submit']";
