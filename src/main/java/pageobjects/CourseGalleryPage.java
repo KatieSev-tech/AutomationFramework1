@@ -22,7 +22,7 @@ public class CourseGalleryPage extends BaseMain {
     public String agileMenu = "//div[contains(text(),'Agile')]";
     public String projectManagementMenu = "//div[contains(text(),'Project Management')]";
     public String LogoLink = "//img[@id='logo']/..";
-    public String questionsCountTotal = "//div[@class='quiz-item-bottom-block']/a";
+    public String questionsCountTotal = "//div[@class='quiz-item-bottom-block']/a[1]";
     public String startBtnSQlBasics ="//body/div[@id='app']/div[2]/div[3]/div[2]/div[2]/a[1]/div[1]";
 
     public void historyIsPresentForSignedUsers() {
@@ -93,7 +93,7 @@ public class CourseGalleryPage extends BaseMain {
 
     public void softAssertAgileSectionIsPresent() {
         SoftAssert softAssert = new SoftAssert();
-        WebElement AgileSection = driver.findElement(By.xpath(businessAnalystMenu));
+        WebElement AgileSection = driver.findElement(By.xpath(agileMenu));
         softAssert.assertEquals((AgileSection.getText()), "Agile");
         softAssert.assertAll();
     }

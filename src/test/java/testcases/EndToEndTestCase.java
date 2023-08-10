@@ -40,11 +40,16 @@ public class EndToEndTestCase extends BaseTest{
         homePage.openCourseGalleryPage();
         courseGalleryPage.totalQuestionsInSQlBasics();
         courseGalleryPage.startSQLBasicsQuiz();
-        baseMain.tabHandler(2);
+        baseMain.tabHandler(1);
         sql101BasicsQuiz.clickOnAnswer();
-        sql101BasicsQuiz.correctQuantityOfLeftQuestions();
+        sql101BasicsQuiz.correctQuantityOfUnansweredQuestions();
+        sql101BasicsQuiz.hardAssertQuantityOfAnsweredQuestions();
         sql101BasicsQuiz.clickOnNextQuestion();
-        sql101BasicsQuiz.validateValueOfpProgressBar();
+        sql101BasicsQuiz.validateValueOfProgressBar();
+        sql101BasicsQuiz.clickOnAnswer();
+        sql101BasicsQuiz.validateChangedValue();
+        sql101BasicsQuiz.validateChangedValueIsCorrect();
+
 
     }
 
