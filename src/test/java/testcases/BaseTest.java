@@ -19,7 +19,7 @@ public class BaseTest {
     SQL101BasicsQuiz sql101BasicsQuiz;
     BaseMain baseMain;
 
-    @BeforeMethod(groups={"fields","links","webElements", "scenario1"}, alwaysRun = true) //all roles should be configured in any Before condition
+    @BeforeMethod(groups={"fields","links","webElements", "scenario1", "scenario2", "scenario3"}, alwaysRun = true) //all roles should be configured in any Before condition
     public void SetUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/GitHub/SeleniumFramework/src/test/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();
@@ -38,7 +38,7 @@ public class BaseTest {
 
     }
 
-    @AfterMethod(groups={"fields","links","webElements","scenario1"}, alwaysRun = true)
+    @AfterMethod(groups={"fields","links","webElements","scenario1", "scenario2", "scenario3"}, alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
             driver.close();

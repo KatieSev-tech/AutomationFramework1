@@ -19,7 +19,7 @@ public class EndToEndTestCase extends BaseTest{
     }
 
 
-    @Test(groups = {"scenario1"})
+    @Test(groups = {"scenario2"})
     public void allCourseGallerySectionsAreDisplayed (){
         homePage.openCourseGalleryPage();
         courseGalleryPage.developmentSectionIsPresent();
@@ -35,7 +35,7 @@ public class EndToEndTestCase extends BaseTest{
     }
 
 
-    @Test(groups = {"scenario1"})
+    @Test(groups = {"scenario3"})
     public void quizProgressFunctionality (){
         homePage.openCourseGalleryPage();
         courseGalleryPage.totalQuestionsInSQlBasics();
