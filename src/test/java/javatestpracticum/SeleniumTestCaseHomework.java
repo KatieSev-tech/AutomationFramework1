@@ -22,7 +22,7 @@ public class SeleniumTestCaseHomework {
 
     @Test
         public void openSignInPage(){
-        System.setProperty("webdriver.chrome.driver","/Users/katerynasevriukova/IdeaProjects/SeleniumProject/src/test/resources/executables/chromedriver");
+        System.setProperty("webdriver.chrome.driver","/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         ChromeDriver driver = new ChromeDriver(options);

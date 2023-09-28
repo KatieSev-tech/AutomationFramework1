@@ -18,10 +18,11 @@ public class BaseTest {
     CourseGalleryPage courseGalleryPage;
     SQL101BasicsQuiz sql101BasicsQuiz;
     BaseMain baseMain;
+    BestBuySearchResultsPage bestBuySearchResultsPage;
 
     @BeforeMethod(groups={"fields","links","webElements", "scenario1", "scenario2", "scenario3"}, alwaysRun = true) //all roles should be configured in any Before condition
     public void SetUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/GitHub/SeleniumFramework/src/test/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
@@ -31,6 +32,7 @@ public class BaseTest {
         bestBuyMainPage = new BestBuyMainPage(driver);
         courseGalleryPage = new CourseGalleryPage(driver);
         sql101BasicsQuiz = new SQL101BasicsQuiz(driver);
+        bestBuySearchResultsPage = new BestBuySearchResultsPage(driver);
         baseMain = new BaseMain(driver);
 
         driver.manage().window().maximize();

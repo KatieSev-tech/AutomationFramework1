@@ -18,6 +18,10 @@ public class BestBuyMainPage extends BaseMain {
     String domain = "https://www.bestbuy.com/";
     //String URL = domain + "/login";
     By suggestItemSection = By.xpath("//ul[@class='c-carousel-list']");
+    By searchField = By.xpath("//input[@id='gh-search-input']");
+    By searchButton = By.xpath("//button[@title='submit search']");
+
+
 
     public void openBestBuyMainPage () {
        driver.get(domain);
@@ -82,7 +86,17 @@ public class BestBuyMainPage extends BaseMain {
     List<WebElement> list = driver.findElements(suggestItemSection);
     Assert.assertTrue(list.isEmpty());
     }
+ public void searchFor(String query){
+        try{
+           // WebDriverWait
+            driver.findElement(By.id("closeButton")).click();
+        }
+        catch (NoSuchElementException e){
 
+        }
+        driver.findElement(searchField).sendKeys(query);
+        driver.findElement(searchButton).click();
+ }
 
 }
 

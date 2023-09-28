@@ -55,31 +55,5 @@ public class DataStoragePractice {
         System.out.println(teammatesAge.get("Nick"));
     }
 
-    /* public void tabSwitching (int tab) {
-        List<String> tabHandler = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabHandler.get(tab));
-        int tabHandler0 = 1;
-        int tabHandler1 = 2;
-        int tabHandler2 = 3;
-        int tabHandler3 = 4;
-    }
-    public void main () {
-        int tab = 1;
-        tabSwitching(tab);
-        int tab1 = 2;
-        tabSwitching(tab1);
-        int tab2 = 3;
-        tabSwitching(tab2);
-        int tab3 = 4;
-        tabSwitching(tab3);
-    }
-
-    /* public void scrollingPage(){
-        List<String>  pixelHandler = new ArrayList<>(driver.getWindowHandles());
-        int pixels = pixelHandler.size();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0," + pixels + ")", "");
-        driver.executeScript("window.scrollBy(0,\" + pixels + \")\", \"\");");
-    }*/
 
 }

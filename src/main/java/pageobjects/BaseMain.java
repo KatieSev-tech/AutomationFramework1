@@ -21,7 +21,7 @@ public class BaseMain {
     String socialsMenuList = "//body/div[@id='app']/div[3]/div[1]/a";
     int listSocialsListExpected = 3;
     int listSocialsListActual;
-    int pixels;
+
 
     public ChromeDriver driver;
 

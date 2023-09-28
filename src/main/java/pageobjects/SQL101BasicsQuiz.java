@@ -18,8 +18,9 @@ public class SQL101BasicsQuiz extends BaseMain {
     String chosenAnswer = "//div[@id='quiz-process-question-block-answers-block']/div[1]";
     String unAnsweredQuestions = "//div[@class='quiz-process-questions-button ']";
     String answeredQuestions = "//div[@class='quiz-process-questions-button answered']";
-    String nextButton = "//div[@class='quiz-process-navigations-block']/div[2]";
+    String nextButton = "//div[contains(@class,'quiz-process-navigations-block-button-next')]";
     String progressBarValue = "quiz-process-progress-data";
+    int percentOfProgress = 11;
 
     public void clickOnAnswer() {
         driver.findElement(By.xpath(chosenAnswer)).click();
@@ -38,41 +39,45 @@ public class SQL101BasicsQuiz extends BaseMain {
         System.out.println(listOfAnsweredQuestions);
     }
 
-    public void displayQuantityOfLeftQuestions() {
+    /* public void displayQuantityOfLeftQuestions() {
         WebDriverWait waitForChangedQuantityOfQuestions = new WebDriverWait(driver, Duration.ofSeconds(10));
         waitForChangedQuantityOfQuestions.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(unAnsweredQuestions)));
     }
+    */
 
-    public void clickOnNextQuestion() {
-        driver.findElement(By.xpath(nextButton)).click();
+
+    public void clickOnNextQuestion() throws InterruptedException {
+        driver.findElement(By.xpath(nextButton));
+        Thread.sleep(4000);
+        driver.findElement(By.xpath(nextButton)).click(); ////nextButton = "div[@class='quiz-process-navigations-block']/div[2]"
     }
 
 
-    public void validateValueOfProgressBar() {
+    public void validateNotChangedValueOfProgressBar() {
         WebElement valueOfProgress = driver.findElement(By.id(progressBarValue));
-        String percentValueOfProgress = valueOfProgress.getAttribute ("style");
+        String percentValueOfProgress = valueOfProgress.getText();
+       // percentValueOfProgress = percentValueOfProgress.substring(3);
         System.out.println(percentValueOfProgress);
+       Assert.assertEquals(percentValueOfProgress, "11%" );
 
     }
 
-    public void validateChangedValue () {
+   /* public void validateChangedValue () {
         WebElement valueOfProgress = driver.findElement(By.id(progressBarValue));
-        String updatedPercentValueOfProgress = valueOfProgress.getAttribute("style");
+        String updatedPercentValueOfProgress = valueOfProgress.getText();
         System.out.println(updatedPercentValueOfProgress);
     }
-    public void validateChangedValueIsCorrect (){
+    */
 
-        int updatedPercentValueOfProgress = 22;
+    public void validateChangedValueIsCorrect () {
 
-    if (updatedPercentValueOfProgress == 22)
-    {
-               System.out.println("Changed Value is correct");
-           }
+        String AnsweredQuestionPercent = driver.findElement(By.id(progressBarValue)).getText();
+        AnsweredQuestionPercent = AnsweredQuestionPercent.substring(3);
 
-       else  {
-               System.out.println("Changed Value is NOT correct");
-           }
+        int AnsweredQuestionPercentValueInteger = Integer.parseInt(AnsweredQuestionPercent);
+        System.out.println(AnsweredQuestionPercentValueInteger);
+        Assert.assertEquals(AnsweredQuestionPercentValueInteger + "%", 22 + "%");
     }
 
-
 }
+
