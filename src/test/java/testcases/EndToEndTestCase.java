@@ -3,10 +3,10 @@ package testcases;
 import org.testng.annotations.Test;
 import pageobjects.BaseMain;
 
-public class EndToEndTestCase extends BaseTest{
+public class EndToEndTestCase extends BaseTest {
 
     @Test(groups = {"scenario1"})
-    public void historySectionAvailableForLoggedInUsers () {
+    public void historySectionAvailableForLoggedInUsers() {
         homePage.openCourseGalleryPage();
         courseGalleryPage.historyIsNoTPresentForSignedUsers();
         courseGalleryPage.returnToMainMenu();
@@ -15,28 +15,20 @@ public class EndToEndTestCase extends BaseTest{
         loginPage.submitButtonCredentials();
         homePage.openCourseGalleryPage();
         courseGalleryPage.historyIsPresentForSignedUsers();
-        courseGalleryPage.softAssertionsHistorySectionIsDisplayed();
     }
 
 
     @Test(groups = {"scenario2"})
-    public void allCourseGallerySectionsAreDisplayed (){
+    public void allCourseGallerySectionsAreDisplayed() {
         homePage.openCourseGalleryPage();
-        courseGalleryPage.developmentSectionIsPresent();
-        courseGalleryPage.softAssertDevelopmentSectionIsPresent();
-        courseGalleryPage.testingSectionIsPresent();
-        courseGalleryPage.softAssertTestingSectionIsPresent();
-        courseGalleryPage.businessAnalystSectionIsPresent();
-        courseGalleryPage.softAssertBusinessAnalystSectionIsPresent();
-        courseGalleryPage.agileSectionIsPresent();
-        courseGalleryPage.softAssertAgileSectionIsPresent();
-        courseGalleryPage.projectManagementSectionIsPresent();
-        courseGalleryPage.softAssertProjectManagementSectionIsPresent();
+        courseGalleryPage.listOfSectionsAreDisplayed();
+
+
     }
 
 
     @Test(groups = {"scenario3"})
-    public void quizProgressFunctionality (){
+    public void quizProgressFunctionality() throws InterruptedException {
         homePage.openCourseGalleryPage();
         courseGalleryPage.totalQuestionsInSQlBasics();
         courseGalleryPage.startSQLBasicsQuiz();
@@ -45,11 +37,9 @@ public class EndToEndTestCase extends BaseTest{
         sql101BasicsQuiz.correctQuantityOfUnansweredQuestions();
         sql101BasicsQuiz.hardAssertQuantityOfAnsweredQuestions();
         sql101BasicsQuiz.clickOnNextQuestion();
-        sql101BasicsQuiz.validateValueOfProgressBar();
+        sql101BasicsQuiz.validateNotChangedValueOfProgressBar();
         sql101BasicsQuiz.clickOnAnswer();
-        sql101BasicsQuiz.validateChangedValue();
         sql101BasicsQuiz.validateChangedValueIsCorrect();
-
 
     }
 

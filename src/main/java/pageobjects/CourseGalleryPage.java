@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseGalleryPage extends BaseMain {
@@ -34,23 +35,26 @@ public class CourseGalleryPage extends BaseMain {
         try {
             driver.findElement(By.xpath(historySection)).isDisplayed();
             System.out.println("History section is present - test fails");
+            
         } catch (NoSuchElementException exception) {
             System.out.println("No history section  - test passes");
         }
     }
 
     public void listOfSectionsAreDisplayed() {
-        List<WebElement> allGalleryCourseSections = driver.findElements(By.xpath(expertiseList)); //expertiseList = "//div[@class='expertise-areas-list']/div"
+        List<Object> expectedGalleryElements = new ArrayList<>();
+                expectedGalleryElements.add("Development");
+                expectedGalleryElements.add("Testing");
+                expectedGalleryElements.add("Business Analyst");
+                expectedGalleryElements.add("Agile");
+                expectedGalleryElements.add("Project Management");
+
+        List<WebElement> allGalleryCourseSections = driver.findElements(By.xpath(expertiseList));
         int allGalleryCourseElements = allGalleryCourseSections.size();
         for (WebElement webElement : allGalleryCourseSections) {
             String allGalleryCourseElement = webElement.getText();
             System.out.println(allGalleryCourseElement);
-            Assert.assertEquals(allGalleryCourseElement, "Development" +
-                    " Testing" +
-                    " Business Analyst" +
-                    " Agile" +
-                    "Project " +
-                    "Management");
+           Assert.assertEquals(allGalleryCourseElement,expectedGalleryElements );
         }
 
     }
