@@ -24,86 +24,78 @@ public class CourseGalleryPage extends BaseMain {
     public String projectManagementMenu = "//div[@class='expertise-areas-list']/div[5]";
     public String questionsCountTotal = "//div[@data-expertise-name='Development'][1]/div[2]/div[1]";
     public String startBtnSQlBasics = "//body/div[@id='app']/div[2]/div[3]/div[2]/div[2]/a[1]/div[1]";
-    public String logoLink = "//img[@id = 'home-my-fork-logo']/..";
+    public String logoLink = "//img[@id='logo']";
 
     public void historyIsPresentForSignedUsers() {
-        driver.findElement(By.xpath(historySection)).isDisplayed();
+
+        // driver.findElement(By.xpath(historySection)).isDisplayed();
+        Assert.assertFalse(historyIsNoTPresentForSignedUsers());
     }
 
-    public void historyIsNoTPresentForSignedUsers() {
-        driver.findElement(By.xpath(topMenuBlock));
+    public void verifyHistoryIsNotPresentForSignedUsers() {
+        Assert.assertTrue(historyIsNoTPresentForSignedUsers());
+    }
+
+
+    public boolean historyIsNoTPresentForSignedUsers() {
+        boolean isDisplayed;
+
         try {
-            driver.findElement(By.xpath(historySection)).isDisplayed();
-            System.out.println("History section is present - test fails");
-            
-        } catch (NoSuchElementException exception) {
-            System.out.println("No history section  - test passes");
+            isDisplayed = driver.findElement(By.xpath(historySection)).isDisplayed();
+            isDisplayed = false;
+            return false;
+        } catch (NoSuchElementException e) {
+            isDisplayed = true;
+            return true;
+
         }
     }
 
-    public void listOfSectionsAreDisplayed() {
-        List<Object> expectedGalleryElements = new ArrayList<>();
-                expectedGalleryElements.add("Development");
-                expectedGalleryElements.add("Testing");
-                expectedGalleryElements.add("Business Analyst");
-                expectedGalleryElements.add("Agile");
-                expectedGalleryElements.add("Project Management");
+    public List<String> expectedListOfSections() {
+        List<String> expectedGalleryElements = new ArrayList<>();
+        expectedGalleryElements.add("Development");
+        expectedGalleryElements.add("Testing");
+        expectedGalleryElements.add("Business Analyst");
+        expectedGalleryElements.add("Agile");
+        expectedGalleryElements.add("Project Management");
+        System.out.println(expectedGalleryElements);
+        return expectedGalleryElements;
 
+
+    }
+
+    public List<String>listOfSectionsAreDisplayed() {
         List<WebElement> allGalleryCourseSections = driver.findElements(By.xpath(expertiseList));
-        int allGalleryCourseElements = allGalleryCourseSections.size();
+        List<String> actualGalleryCourseSections = new ArrayList<>();
         for (WebElement webElement : allGalleryCourseSections) {
-            String allGalleryCourseElement = webElement.getText();
-            System.out.println(allGalleryCourseElement);
-           Assert.assertEquals(allGalleryCourseElement,expectedGalleryElements );
+            actualGalleryCourseSections.add(webElement.getText());
+            System.out.println(actualGalleryCourseSections);
         }
+        return actualGalleryCourseSections;
+    }
+
+
+    public void verifyGalleryCourseSections (){
+        Assert.assertEquals(listOfSectionsAreDisplayed(),expectedListOfSections());
+
 
     }
-   /* public void listOfSectionsContainsProvidedText(){
 
-        List<WebElement> elements = driver.findElements(By.xpath(expertiseList));
-
-        elements.stream().anyMatch(e->e.getText().trim().contains("Development, Testing, Business Analyst, Agile, Project Management"));
-
-        System.out.println(elements);
-       }
-    public void sectionsContainProvidedText(){
-
-            Assert.assertEquals(driver.findElement(By.xpath("developmentMenu")).getText(), "Development");
-            Assert.assertEquals(driver.findElement(By.xpath("testingMenu")).getText(), "Testing");
-            Assert.assertEquals(driver.findElement(By.xpath("businessAnalystMenu")).getText(), "Business Analyst");
-            Assert.assertEquals(driver.findElement(By.xpath("agileMenu")).getText(), "Agile");
-            Assert.assertEquals(driver.findElement(By.xpath("projectManagementMenu")).getText(), "Project Management");
-
-    }
-*/
-
-    public void returnToMainMenu() {
+    public void returnToMainMenu(){
         driver.findElement(By.xpath(logoLink)).click();
-    }
+}
 
-
-        /*
 
     public void totalQuestionsInSQlBasics () {
 
-            List<WebElement> totalNumberQuestionsSQLBasics = driver.findElements(By.xpath(questionsCountTotal));
-            int totalQuestionsCount = totalNumberQuestionsSQLBasics.size();
-            System.out.println(totalQuestionsCount);
-
-        }
-        */
-        public void totalQuestionsInSQlBasics () {
-
-            String totalQuestions = driver.findElement(By.xpath(questionsCountTotal)).getText();
-            totalQuestions = totalQuestions.substring(4);
-            System.out.println(totalQuestions);
+        String totalQuestions = driver.findElement(By.xpath(questionsCountTotal)).getText();
+        totalQuestions = totalQuestions.substring(4);
+        System.out.println(totalQuestions);
 
         }
 
-        public void startSQLBasicsQuiz () {
-            driver.findElement(By.xpath(startBtnSQlBasics)).click();
+    public void startSQLBasicsQuiz () {
+        driver.findElement(By.xpath(startBtnSQlBasics)).click();
 
         }
-
-
     }
