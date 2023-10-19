@@ -45,7 +45,8 @@ public class SQL101BasicsQuiz extends BaseMain {
         WebElement valueOfProgress = driver.findElement(By.xpath(progressBarValue));
         String percentValueOfProgress = valueOfProgress.getText();
         //System.out.println(percentValueOfProgress);
-        percentValueOfProgress = percentValueOfProgress.substring(0,2);
+        int indexOfDot = percentValueOfProgress.indexOf(".");
+        percentValueOfProgress = percentValueOfProgress.substring(0,indexOfDot);
         System.out.println(percentValueOfProgress);
         return percentValueOfProgress;
     }
@@ -64,7 +65,8 @@ public class SQL101BasicsQuiz extends BaseMain {
         //System.out.println(correctValueOfProgress);
         String expectedValueOfProgress = String.valueOf(correctValueOfProgress);
         //System.out.println(expectedValueOfProgress);
-        expectedValueOfProgress =  expectedValueOfProgress.substring(0,2);
+        int indexOfDot = expectedValueOfProgress.indexOf(".");
+        expectedValueOfProgress =  expectedValueOfProgress.substring(0,indexOfDot);
         System.out.println(expectedValueOfProgress);
         return expectedValueOfProgress;
 
@@ -87,7 +89,8 @@ public class SQL101BasicsQuiz extends BaseMain {
         //System.out.println(correctValueOfProgress);
         String expectedValueOfProgress = String.valueOf(correctValueOfProgress);
         //System.out.println(expectedValueOfProgress);
-        expectedValueOfProgress =  expectedValueOfProgress.substring(0,2);
+        int indexOfDot = expectedValueOfProgress.indexOf(".");
+        expectedValueOfProgress =  expectedValueOfProgress.substring(0,indexOfDot);
         System.out.println(expectedValueOfProgress);
         return expectedValueOfProgress;
 
