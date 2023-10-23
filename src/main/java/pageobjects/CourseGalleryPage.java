@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CourseGalleryPage extends BaseMain {
@@ -16,19 +17,12 @@ public class CourseGalleryPage extends BaseMain {
 
     public String historySection = "//div[@class='main-content']/a";
     public String expertiseList = "//div[@class='expertise-areas-list']/div";
-    public String topMenuBlock = "/html[1]/body[1]/div[1]/div[2]";
-    public String developmentMenu = "//div[@class='expertise-areas-list']/div[1]";
-    public String testingMenu = "//div[@class='expertise-areas-list']/div[2]";
-    public String businessAnalystMenu = "//div[@class='expertise-areas-list']/div[3]";
-    public String agileMenu = "//div[@class='expertise-areas-list']/div[4]";
-    public String projectManagementMenu = "//div[@class='expertise-areas-list']/div[5]";
     public String questionsCountTotal = "//div[@data-expertise-name='Development'][1]/div[2]/div[1]";
-    public String startBtnSQlBasics = "//body/div[@id='app']/div[2]/div[3]/div[2]/div[2]/a[1]/div[1]";
-    public String logoLink = "//img[@id='logo']";
+    public String startBtnSQlBasics = "//div[@data-expertise-name='Development']/div[2]/a[@href='/quiz/run/10']/div";
+    public String logoImage = "//img[@id='logo']";
 
     public void historyIsPresentForSignedUsers() {
 
-        // driver.findElement(By.xpath(historySection)).isDisplayed();
         Assert.assertFalse(historyIsNoTPresentForSignedUsers());
     }
 
@@ -38,20 +32,51 @@ public class CourseGalleryPage extends BaseMain {
 
 
     public boolean historyIsNoTPresentForSignedUsers() {
-        boolean isDisplayed;
-
         try {
-            isDisplayed = driver.findElement(By.xpath(historySection)).isDisplayed();
-            isDisplayed = false;
+            driver.findElement(By.xpath(historySection)).isDisplayed();
             return false;
         } catch (NoSuchElementException e) {
-            isDisplayed = true;
             return true;
 
         }
     }
 
-    public List<String> expectedListOfSections() {
+    List<String> expectedGalleryCourseSections = Arrays.asList("Development", "Testing","Business Analyst", "Agile","Project Management");
+
+    public List<String>actualListOfSections() {
+        List<WebElement> allGalleryCourseSections = driver.findElements(By.xpath(expertiseList));
+        List<String> actualGalleryCourseSections = new ArrayList<>();
+        for (WebElement webElement : allGalleryCourseSections) {
+            actualGalleryCourseSections.add(webElement.getText());
+            System.out.println(actualGalleryCourseSections);
+        }
+        return actualGalleryCourseSections;
+    }
+
+    public void verifyGalleryCourseSections (List <String> actualList){
+        Assert.assertEquals(actualList,expectedGalleryCourseSections);
+
+    }
+
+    public void returnToMainMenu(){
+        driver.findElement(By.xpath(logoImage)).click();
+}
+
+
+    public String totalQuestionsInSQlBasics () {
+
+        String totalQuestions = driver.findElement(By.xpath(questionsCountTotal)).getText();
+        totalQuestions = totalQuestions.substring(4);
+        return totalQuestions;
+
+        }
+
+    public void startSQLBasicsQuiz () {
+        driver.findElement(By.xpath(startBtnSQlBasics)).click();
+
+        }
+
+     /*public List<String> expectedListOfSections() {
         List<String> expectedGalleryElements = new ArrayList<>();
         expectedGalleryElements.add("Development");
         expectedGalleryElements.add("Testing");
@@ -63,39 +88,5 @@ public class CourseGalleryPage extends BaseMain {
 
 
     }
-
-    public List<String>listOfSectionsAreDisplayed() {
-        List<WebElement> allGalleryCourseSections = driver.findElements(By.xpath(expertiseList));
-        List<String> actualGalleryCourseSections = new ArrayList<>();
-        for (WebElement webElement : allGalleryCourseSections) {
-            actualGalleryCourseSections.add(webElement.getText());
-            System.out.println(actualGalleryCourseSections);
-        }
-        return actualGalleryCourseSections;
-    }
-
-
-    public void verifyGalleryCourseSections (){
-        Assert.assertEquals(listOfSectionsAreDisplayed(),expectedListOfSections());
-
-
-    }
-
-    public void returnToMainMenu(){
-        driver.findElement(By.xpath(logoLink)).click();
-}
-
-
-    public void totalQuestionsInSQlBasics () {
-
-        String totalQuestions = driver.findElement(By.xpath(questionsCountTotal)).getText();
-        totalQuestions = totalQuestions.substring(4);
-        System.out.println(totalQuestions);
-
-        }
-
-    public void startSQLBasicsQuiz () {
-        driver.findElement(By.xpath(startBtnSQlBasics)).click();
-
-        }
+*/
     }

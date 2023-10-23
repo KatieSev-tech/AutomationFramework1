@@ -13,10 +13,6 @@
         
         <classes>
             <class name ="testcases.EndToEndTestCase">
-                <methods>
-                    <exclude name="historySectionAvailableForLoggedInUsers"></exclude>
-                    <exclude name="allCourseGallerySectionsAreDisplayed"></exclude>
-                </methods>
             </class>
 
         </classes>

@@ -3,6 +3,8 @@ package testcases;
 import org.testng.annotations.Test;
 import pageobjects.BaseMain;
 
+import java.util.List;
+
 public class EndToEndTestCase extends BaseTest {
 
     @Test(groups = {"scenario1"})
@@ -21,9 +23,8 @@ public class EndToEndTestCase extends BaseTest {
     @Test(groups = {"scenario2"})
     public void allCourseGallerySectionsAreDisplayed() {
         homePage.openCourseGalleryPage();
-        courseGalleryPage.expectedListOfSections();
-        courseGalleryPage.listOfSectionsAreDisplayed();
-        courseGalleryPage.verifyGalleryCourseSections();
+        List<String> actualList = courseGalleryPage.actualListOfSections();
+        courseGalleryPage.verifyGalleryCourseSections(actualList);
 
     }
 
@@ -31,21 +32,21 @@ public class EndToEndTestCase extends BaseTest {
     @Test(groups = {"scenario3"})
     public void quizProgressFunctionality() throws InterruptedException {
         homePage.openCourseGalleryPage();
-        courseGalleryPage.totalQuestionsInSQlBasics();
+        String tQuestions = courseGalleryPage.totalQuestionsInSQlBasics();
         courseGalleryPage.startSQLBasicsQuiz();
         baseMain.tabHandler(1);
         sql101BasicsQuiz.clickOnAnswer();
-        sql101BasicsQuiz.actualValueOfProgress();
-        sql101BasicsQuiz.expectedValueOfProgress();
-        sql101BasicsQuiz.verifyValueOfProgress();
+        String actual = sql101BasicsQuiz.actualValueOfProgress();
+        String expected = sql101BasicsQuiz.expectedValueOfProgress(tQuestions);
+        sql101BasicsQuiz.verifyValueOfProgress(actual, expected);
         sql101BasicsQuiz.clickOnNextQuestion();
-        sql101BasicsQuiz.actualValueOfProgress();
-        sql101BasicsQuiz.expectedValueOfProgress();
-        sql101BasicsQuiz.verifyValueOfProgress();
+        actual = sql101BasicsQuiz.actualValueOfProgress();
+        expected = sql101BasicsQuiz.expectedValueOfProgress(tQuestions);
+        sql101BasicsQuiz.verifyValueOfProgress(actual, expected);
         sql101BasicsQuiz.clickOnAnswer();
-        sql101BasicsQuiz.actualValueOfProgress();
-        sql101BasicsQuiz.expectedValueOfProgressAfterAnswer();
-        sql101BasicsQuiz.verifyChangedValueOfProgress();
+        actual = sql101BasicsQuiz.actualValueOfProgress();
+        expected =sql101BasicsQuiz.expectedValueOfProgressAfterAnswer(tQuestions);
+        sql101BasicsQuiz.verifyChangedValueOfProgress(actual, expected);
 
     }
 

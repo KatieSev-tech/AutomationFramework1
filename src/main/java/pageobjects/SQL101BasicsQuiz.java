@@ -16,9 +16,9 @@ public class SQL101BasicsQuiz extends BaseMain {
     }
 
     String chosenAnswer = "//div[@id='quiz-process-question-block-answers-block']/div[1]";
-    String totalQuestions = "//div[@class='quiz-process-questions']/div[9]";
-    String answered1Question = "//div[@class='quiz-process-questions-button answered']";
-    String answered2question = "//div[@class='quiz-process-questions']/div[2]";
+    String totalQuestions = "//div[@class='quiz-process-questions']/div";
+    String answeredQuestion = "//div[@id='quiz-process-question-block-answers-block']/div[1]";
+
     String nextButton = "//div[contains(@class,'quiz-process-navigations-block-button-next')]";
     String progressBarValue = "//div[@id='quiz-process-progress-data']";
     public String questionsCountTotal = "//div[@data-expertise-name='Development'][1]/div[2]/div[1]";
@@ -28,12 +28,6 @@ public class SQL101BasicsQuiz extends BaseMain {
         driver.findElement(By.xpath(chosenAnswer)).click();
     }
 
-    public void correctQuantityOfUnansweredQuestions() {
-        List<WebElement> quantityOfLeftQuestions = driver.findElements(By.xpath(totalQuestions));
-        int listOfUnansweredQuestions = quantityOfLeftQuestions.size();
-        System.out.println(listOfUnansweredQuestions);
-
-    }
 
     public void clickOnNextQuestion() throws InterruptedException {
         driver.findElement(By.xpath(nextButton));
@@ -42,24 +36,20 @@ public class SQL101BasicsQuiz extends BaseMain {
     }
 
     public String actualValueOfProgress(){
-        WebElement valueOfProgress = driver.findElement(By.xpath(progressBarValue));
-        String percentValueOfProgress = valueOfProgress.getText();
+        String valueOfProgress = driver.findElement(By.xpath(progressBarValue)).getText();
         //System.out.println(percentValueOfProgress);
-        int indexOfDot = percentValueOfProgress.indexOf(".");
-        percentValueOfProgress = percentValueOfProgress.substring(0,indexOfDot);
-        System.out.println(percentValueOfProgress);
-        return percentValueOfProgress;
+        int indexOfDot = valueOfProgress.indexOf(".");
+        valueOfProgress = valueOfProgress.substring(0,indexOfDot);
+        return valueOfProgress;
     }
 
 
-    public String expectedValueOfProgress() {
-        String AnsweredQuestions = driver.findElement(By.xpath(answered1Question)).getText();
+    public String expectedValueOfProgress(String tQuestions) {
+        String AnsweredQuestions = driver.findElement(By.xpath(answeredQuestion)).getText();
         //System.out.println(AnsweredQuestions);
-        String generalQuestions = driver.findElement(By.xpath(totalQuestions)).getText();
-        //System.out.println(generalQuestions);
         double AnsweredQuestionsValue = Double.parseDouble(AnsweredQuestions);
         //System.out.println(AnsweredQuestionsValue);
-        double totalQuestions = Double.parseDouble(generalQuestions);
+        double totalQuestions = Double.parseDouble(tQuestions);
        // System.out.println(totalQuestions);
         double correctValueOfProgress = (AnsweredQuestionsValue * percent) / totalQuestions;
         //System.out.println(correctValueOfProgress);
@@ -72,18 +62,16 @@ public class SQL101BasicsQuiz extends BaseMain {
 
     }
 
-    public void verifyValueOfProgress(){
-        Assert.assertEquals(actualValueOfProgress(), expectedValueOfProgress());
+    public void verifyValueOfProgress(String actual, String expected){
+        Assert.assertEquals(actual, expected);
     }
 
-    public String expectedValueOfProgressAfterAnswer() {
-        String AnsweredQuestions = driver.findElement(By.xpath(answered2question)).getText();
+    public String expectedValueOfProgressAfterAnswer(String tQuestions) {
+        String AnsweredQuestions = driver.findElement(By.xpath(answeredQuestion)).getText();
         //System.out.println(AnsweredQuestions);
-        String generalQuestions = driver.findElement(By.xpath(totalQuestions)).getText();
-        //System.out.println(generalQuestions);
         double AnsweredQuestionsValue = Double.parseDouble(AnsweredQuestions);
         //System.out.println(AnsweredQuestionsValue);
-        double totalQuestions = Double.parseDouble(generalQuestions);
+        double totalQuestions = Double.parseDouble(tQuestions);
         // System.out.println(totalQuestions);
         double correctValueOfProgress = (AnsweredQuestionsValue * percent) / totalQuestions;
         //System.out.println(correctValueOfProgress);
@@ -95,8 +83,8 @@ public class SQL101BasicsQuiz extends BaseMain {
         return expectedValueOfProgress;
 
     }
-    public void verifyChangedValueOfProgress() {
-        Assert.assertEquals(actualValueOfProgress(), expectedValueOfProgressAfterAnswer());
+    public void verifyChangedValueOfProgress(String actual, String expected) {
+        Assert.assertEquals(actual, expected);
     }
 
 
