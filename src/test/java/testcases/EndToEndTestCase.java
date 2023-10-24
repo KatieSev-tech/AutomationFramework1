@@ -45,8 +45,8 @@ public class EndToEndTestCase extends BaseTest {
         sql101BasicsQuiz.verifyValueOfProgress(actual, expected);
         sql101BasicsQuiz.clickOnAnswer();
         actual = sql101BasicsQuiz.actualValueOfProgress();
-        expected =sql101BasicsQuiz.expectedValueOfProgressAfterAnswer(tQuestions);
-        sql101BasicsQuiz.verifyChangedValueOfProgress(actual, expected);
+        expected =sql101BasicsQuiz.expectedValueOfProgress(tQuestions);
+        sql101BasicsQuiz.verifyValueOfProgress(actual, expected);
 
     }
 

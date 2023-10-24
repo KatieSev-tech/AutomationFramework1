@@ -41,7 +41,7 @@ public class CourseGalleryPage extends BaseMain {
         }
     }
 
-    List<String> expectedGalleryCourseSections = Arrays.asList("Development", "Testing","Business Analyst", "Agile","Project Management");
+    List<String> expectedGalleryCourseSections = Arrays.asList("Development", "Testing","Business Analysis", "Agile","Project Management");
 
     public List<String>actualListOfSections() {
         List<WebElement> allGalleryCourseSections = driver.findElements(By.xpath(expertiseList));
@@ -67,9 +67,10 @@ public class CourseGalleryPage extends BaseMain {
 
         String totalQuestions = driver.findElement(By.xpath(questionsCountTotal)).getText();
         totalQuestions = totalQuestions.substring(4);
+        System.out.println(totalQuestions);
         return totalQuestions;
 
-        }
+    }
 
     public void startSQLBasicsQuiz () {
         driver.findElement(By.xpath(startBtnSQlBasics)).click();

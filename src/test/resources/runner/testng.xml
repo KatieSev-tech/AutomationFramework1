@@ -3,18 +3,10 @@
 <suite name="MyFork" verbose="1" >
     <test name="Functional" >
         
-        <groups>
-            <run>
-                <include name="scenario1"></include>
-                <include name="scenario2"></include>
-                <include name="scenario3"></include>
-            </run>
-        </groups>
-        
         <classes>
             <class name ="testcases.EndToEndTestCase">
-            </class>
 
+            </class>
         </classes>
     </test>
 </suite>
