@@ -9,10 +9,11 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CourseGalleryPage extends BaseMain {
-    public CourseGalleryPage(ChromeDriver driver) {
-        super(driver);
+    public CourseGalleryPage(ChromeDriver driver, Logger log) {
+        super(driver, log );
     }
 
     public String historySection = "//div[@class='main-content']/a";
@@ -59,7 +60,8 @@ public class CourseGalleryPage extends BaseMain {
     }
 
     public void returnToMainMenu(){
-        driver.findElement(By.xpath(logoImage)).click();
+        clickUsingXpath(logoImage, "return to main page by clicking logo is successful");
+        //driver.findElement(By.xpath(logoImage)).click();
 }
 
 
@@ -73,7 +75,8 @@ public class CourseGalleryPage extends BaseMain {
     }
 
     public void startSQLBasicsQuiz () {
-        driver.findElement(By.xpath(startBtnSQlBasics)).click();
+        clickUsingXpath(startBtnSQlBasics, "SLBasicsQuiz is started successfully");
+        //driver.findElement(By.xpath(startBtnSQlBasics)).click();
 
         }
 

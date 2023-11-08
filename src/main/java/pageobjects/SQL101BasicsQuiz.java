@@ -9,10 +9,12 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class SQL101BasicsQuiz extends BaseMain {
-    public SQL101BasicsQuiz(ChromeDriver driver) {
-        super(driver);
+    public SQL101BasicsQuiz(ChromeDriver driver, Logger log) {
+
+        super(driver, log);
     }
 
     String chosenAnswer = "//div[@id='quiz-process-question-block-answers-block']/div[1]";
@@ -25,14 +27,16 @@ public class SQL101BasicsQuiz extends BaseMain {
     double percent = 100;
 
     public void clickOnAnswer() {
-        driver.findElement(By.xpath(chosenAnswer)).click();
+        clickUsingXpath(chosenAnswer, "Answer field is chosen successfully");
+        //driver.findElement(By.xpath(chosenAnswer)).click();
     }
 
 
     public void clickOnNextQuestion() throws InterruptedException {
         driver.findElement(By.xpath(nextButton));
         Thread.sleep(4000);
-        driver.findElement(By.xpath(nextButton)).click();
+        clickUsingXpath(nextButton, "NextQuestionPage is opened successful");
+        //driver.findElement(By.xpath(nextButton)).click();
     }
 
     public String actualValueOfProgress(){
@@ -64,8 +68,10 @@ public class SQL101BasicsQuiz extends BaseMain {
     }
 
     public void verifyValueOfProgress(String actual, String expected){
-        Assert.assertEquals(actual, expected);
+        validateStringWithAssertEqual(actual, expected);
+        //Assert.assertEquals(actual, expected);
     }
+
 
 
 

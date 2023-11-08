@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class BaseMain {
 
@@ -24,10 +25,12 @@ public class BaseMain {
 
 
     public ChromeDriver driver;
+    public Logger log;
 
-    public BaseMain(ChromeDriver driver){
+    public BaseMain(ChromeDriver driver, Logger logger){
 
         this.driver =driver;
+        this.log = logger;
     }
 
     public void hardAssertsOpenWebsite () {
@@ -53,6 +56,25 @@ public class BaseMain {
     public void scrollingPage (int pixels){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0," + pixels + ")", "");
+    }
+
+    public void clickUsingXpath (String xpath, String elementName){
+        driver.findElement(By.xpath(xpath)).click();
+        log.info("Element:" +elementName + "was successfully clicked");
+    }
+
+    public void typeUsingXpath (String xpath, String elementName, String value){
+        driver.findElement(By.xpath(xpath)).sendKeys(value);
+        log.info("Value: "+ value + " was successfully entered into " + elementName + "element");
+    }
+    public void submitUsingXpath (String xpath, String elementName){
+        driver.findElement(By.xpath(xpath)).submit();
+        log.info("Element:" +elementName + "was successfully submitted");
+    }
+
+    public void validateStringWithAssertEqual (String actual, String expected){
+        Assert.assertEquals(actual, expected);
+        log.info(actual + "value of progress equal expected value of progress" + expected);
     }
 
 }
