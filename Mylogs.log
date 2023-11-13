@@ -1,2 +1,4 @@
-Nov 04, 2023 2:23:44 PM testcases.BaseTest saveLogs
+Nov 13, 2023 11:27:52 AM testcases.BaseTest saveLogs
 INFO: This is a beginning of test suit
+Nov 13, 2023 11:27:54 AM pageobjects.BaseMain clickUsingXpath
+INFO: Element:CourseGallery page is opened successfullywas successfully clicked

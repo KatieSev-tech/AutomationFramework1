@@ -1,7 +1,11 @@
 
 package testcases;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class LoginTest extends BaseTest{
 
@@ -9,6 +13,12 @@ public class LoginTest extends BaseTest{
     public void signInPage(){
 
         homePage.openSignInPage();
+        List<Integer> codes = homePage.urlVerification();
+        SoftAssert softAssert = new SoftAssert();
+        Integer expected = 200;
+        for (Integer code: codes){
+            softAssert.assertEquals(code, expected);
+        }
     }
     @Test(priority = 1, groups = {"fields"})
     public void validateEmailPasswordFieldsLoginButtonAreDisplayed (){

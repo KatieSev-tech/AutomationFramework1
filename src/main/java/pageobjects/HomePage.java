@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 public class HomePage extends BaseMain{
@@ -39,5 +40,10 @@ public class HomePage extends BaseMain{
         driver.get(myForkURL);
         clickUsingXpath(CourseGalleryButton, "CourseGallery page is opened successfully");
         //driver.findElement(By.xpath(CourseGalleryButton)).click();
+    }
+
+    public List<Integer> urlVerification(){
+
+        return verifyLinkActive();
     }
 }

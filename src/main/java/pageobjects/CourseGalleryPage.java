@@ -80,6 +80,8 @@ public class CourseGalleryPage extends BaseMain {
 
         }
 
+
+
      /*public List<String> expectedListOfSections() {
         List<String> expectedGalleryElements = new ArrayList<>();
         expectedGalleryElements.add("Development");
