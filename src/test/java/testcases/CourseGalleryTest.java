@@ -15,5 +15,6 @@ public class CourseGalleryTest extends BaseTest{
         for (Integer code: codes){
             softAssert.assertEquals(code, expected);
         }
+        softAssert.assertAll();
     }
 }

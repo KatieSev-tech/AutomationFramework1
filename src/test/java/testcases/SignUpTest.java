@@ -15,6 +15,7 @@ public class SignUpTest extends BaseTest {
         Integer expected = 200;
         for (Integer code: codes){
             softAssert.assertEquals(code, expected);
+            softAssert.assertAll();
         }
     }
 

@@ -18,6 +18,7 @@ public class LoginTest extends BaseTest{
         Integer expected = 200;
         for (Integer code: codes){
             softAssert.assertEquals(code, expected);
+            softAssert.assertAll();
         }
     }
     @Test(priority = 1, groups = {"fields"})
