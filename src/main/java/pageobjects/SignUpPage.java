@@ -3,10 +3,12 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.logging.Logger;
+
 public class SignUpPage extends BaseMain {
 
-    public SignUpPage(ChromeDriver driver) {
-        super(driver);
+    public SignUpPage(ChromeDriver driver, Logger log) {
+        super(driver, log);
     }
 
     public String firstNameField = "name";

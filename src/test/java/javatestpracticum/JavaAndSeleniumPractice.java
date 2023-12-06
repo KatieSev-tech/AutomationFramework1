@@ -23,7 +23,7 @@ public class JavaAndSeleniumPractice extends BaseTest {
         WebElement searchDropdownElement;
         searchDropdownElement = driver.findElement(By.id("searchDropdownBox"));
         Select searchDropdown = new Select(searchDropdownElement);
-        List<WebElement> options = new ArrayList<>();
+        List<WebElement> options = new ArrayList<>(); //Option + Return - import library
         options = searchDropdown.getOptions();
         for (int i = 0; i < options.size(); i++) {
         System.out.println(options.get(i).getText());

@@ -1,16 +1,27 @@
 
 package testcases;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class LoginTest extends BaseTest{
 
-    @Test
+    @Test(priority = 1, groups = {"links"})
     public void signInPage(){
 
         homePage.openSignInPage();
+        List<Integer> codes = homePage.urlVerification();
+        SoftAssert softAssert = new SoftAssert();
+        Integer expected = 200;
+        for (Integer code: codes){
+            softAssert.assertEquals(code, expected);
+            softAssert.assertAll();
+        }
     }
-    @Test
+    @Test(priority = 1, groups = {"fields"})
     public void validateEmailPasswordFieldsLoginButtonAreDisplayed (){
 
         homePage.openSignInPage();
@@ -19,7 +30,7 @@ public class LoginTest extends BaseTest{
 
     }
 
-    @Test
+    @Test(priority = 2, groups = {"fields"})
     public void validateInvalidEmailPasswordFieldsClickOnLoginButton (){
 
         homePage.openSignInPage();
@@ -27,7 +38,7 @@ public class LoginTest extends BaseTest{
         loginPage.submitButtonCredentials();
     }
 
-    @Test
+    @Test(priority = 3, groups ={"fields"})
     public void validateErrorIsAppeared (){
 
         homePage.openSignInPage();
@@ -37,14 +48,13 @@ public class LoginTest extends BaseTest{
         loginPage.softAssertionsErrorMessageText();
     }
 
-    @Test
+    @Test(priority = 2, groups ={"webElements"})
     public void ValidateRememberMeCheckboxIsChecked (){
-
         homePage.openSignInPage();
         loginPage.checkIfRememberMeIsSelected();
     }
 
-    @Test
+    @Test(priority = 2, groups = {"webElements"})
     public void validateCheckBoxTextIsDisplayed () {
         homePage.openSignInPage();
         loginPage.checkBoxTextIsDisplayed();
@@ -52,14 +62,14 @@ public class LoginTest extends BaseTest{
     }
 
 
-    @Test
+    @Test(priority = 2, groups = {"webElements"})
     public void validateSignUplinkIsDisplayed (){
         homePage.openSignInPage();
         loginPage.SignUpLinkIsPresent();
         loginPage.softAssertionsSignInPageSignUpLink();
     }
 
-    @Test
+    @Test(priority = 2, groups = {"webElements"})
     public void validateValidEmailPasswordClickLoginButton () {
         homePage.openSignInPage();
         loginPage.fillUpCredentials();

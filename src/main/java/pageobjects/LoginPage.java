@@ -9,17 +9,18 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class LoginPage extends BaseMain{
 
-    public LoginPage(ChromeDriver driver){
-        super(driver);
+    public LoginPage(ChromeDriver driver, Logger log){
+        super(driver, log);
     }
 
     public String EmailField = "email";
     public String passwordField = "password";
-    private String validEmail = "katietest@gmail.com";
-    private String validPassword = "Password1006!";
+    private String validEmail = "testing@my-fork.com";
+    private String validPassword = "Password";
     private String invalidEmail = "test@gmail.com";
     private String invalidPassword = "password";
     public String LogInButtonLoginPage = "//button[@type ='submit']";
@@ -33,14 +34,18 @@ public class LoginPage extends BaseMain{
     public String signUpButton = "//a[contains(text(),'Sign Up')]";
 
     public void fillUpCredentials (){
-        driver.findElement(By.id(EmailField)).sendKeys(validEmail);
-        driver.findElement(By.id(passwordField)).sendKeys(validPassword);
+        typeUsingXpath(EmailField, "emailField", validEmail);
+        typeUsingXpath(passwordField, "passwordField", validPassword);
+        //driver.findElement(By.id(EmailField)).sendKeys(validEmail);
+        //driver.findElement(By.id(passwordField)).sendKeys(validPassword);
 
     }
 
     public void fillUpInvalidCredentials (){
-        driver.findElement(By.id(EmailField)).sendKeys(invalidEmail);
-        driver.findElement(By.id(passwordField)).sendKeys(invalidPassword);
+        typeUsingXpath(EmailField, "emailField", invalidEmail);
+        typeUsingXpath(passwordField, "passwordField", invalidPassword);
+        // driver.findElement(By.id(EmailField)).sendKeys(invalidEmail);
+       //driver.findElement(By.id(passwordField)).sendKeys(invalidPassword);
     }
 
     public void emailPasswordFieldsSignInButtonAreDisplayed (){
@@ -50,8 +55,8 @@ public class LoginPage extends BaseMain{
     }
 
     public void submitButtonCredentials (){
-
-        driver.findElement(By.xpath(LogInButtonLoginPage)).click();
+        submitUsingXpath(LogInButtonLoginPage, "Submit Button is successful");
+        //driver.findElement(By.xpath(LogInButtonLoginPage)).submit();
     }
 
     public void displayErrorMessage (){
@@ -111,6 +116,11 @@ public class LoginPage extends BaseMain{
         softAssert.assertFalse(errorMessageText.contains("Wrong password"), "Wrong email should displayed");
         softAssert.assertAll();
 
+    }
+
+    public void fillTheSignInForm( String username, String password){
+        driver.findElement(By.id(EmailField)).sendKeys("username");
+        driver.findElement(By.id(passwordField)).sendKeys("password");
 
     }
 }

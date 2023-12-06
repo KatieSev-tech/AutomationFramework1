@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+import org.testng.reporters.AbstractXmlReporter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class ArrayDropDown extends BaseTest{
 
 
-    @Test
+    @Test(priority = 2, groups ={"webElements"})
 
     public void jobTitleDropdown () {
         homePage.openSignUpPage();

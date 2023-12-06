@@ -166,5 +166,9 @@ public class JavaMethodsTest {
             
         }
     }
+
+    public void calculateOverallGrade (int math, int eng, int art){ //method will call and return 3 parameters
+        int overallGrade = (math + eng + art)/3;
+    }
 }
 
