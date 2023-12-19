@@ -5,11 +5,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class BestBuySearchResultsPage extends BaseMain{
-    public BestBuySearchResultsPage (ChromeDriver driver) {
+    public BestBuySearchResultsPage (ChromeDriver driver, Logger log) {
 
-        super(driver);
+        super(driver, log);
     }
 
     private By searchItemTitle = By.xpath("//h4[@class='sku-title']/a");

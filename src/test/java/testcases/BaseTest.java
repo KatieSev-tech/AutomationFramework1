@@ -2,8 +2,11 @@ package testcases;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import pageobjects.*;
 
 import java.io.IOException;
@@ -14,7 +17,7 @@ import java.util.logging.SimpleFormatter;
 
 public class BaseTest {
 
-    public ChromeDriver driver;
+    public  RemoteWebDriver driver;
     Logger log;
     HomePage homePage;
     LoginPage loginPage;
@@ -26,21 +29,27 @@ public class BaseTest {
     BestBuySearchResultsPage bestBuySearchResultsPage;
 
     @BeforeMethod(groups={"fields","links","webElements", "scenario1", "scenario2", "scenario3"}, alwaysRun = true) //all roles should be configured in any Before condition
-    public void SetUp() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
+    public void startDriver (@Optional("chrome") String browser ) throws IOException {
+        if (browser.equalsIgnoreCase("chrome")) {
+            System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/chromedriver");
+            //ChromeOptions options = new ChromeOptions();
+           // options.addArguments("--remote-allow-origins=*");
+            driver = new ChromeDriver();
+        }
+        else if (browser.equalsIgnoreCase("firefox")){
+            System.setProperty("webdriver.gecko.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/geckodriver");
+            driver = new FirefoxDriver();
+        }
         log = Logger.getLogger(getClass().getName());
         saveLogs(log);
-        homePage = new HomePage(driver, log);
-        loginPage = new LoginPage(driver, log);
-        signUpPage = new SignUpPage(driver, log);
-        bestBuyMainPage = new BestBuyMainPage(driver, log);
-        courseGalleryPage = new CourseGalleryPage(driver, log);
-        sql101BasicsQuiz = new SQL101BasicsQuiz(driver, log);
-        bestBuySearchResultsPage = new BestBuySearchResultsPage(driver, log);
-        baseMain = new BaseMain(driver, log);
+        homePage = new HomePage((ChromeDriver) driver, log);
+        loginPage = new LoginPage((ChromeDriver) driver, log);
+        signUpPage = new SignUpPage((ChromeDriver) driver, log);
+        bestBuyMainPage = new BestBuyMainPage((ChromeDriver) driver, log);
+        courseGalleryPage = new CourseGalleryPage((ChromeDriver) driver, log);
+        sql101BasicsQuiz = new SQL101BasicsQuiz((ChromeDriver) driver, log);
+        bestBuySearchResultsPage = new BestBuySearchResultsPage((ChromeDriver) driver, log);
+        baseMain = new BaseMain((ChromeDriver) driver, log);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
