@@ -12,7 +12,7 @@ public class HomePage extends BaseMain{
 
     BaseMain baseMain = new BaseMain(driver, log); // should provide value to avoid null error
 
-    public HomePage(ChromeDriver driver, Logger log){
+    public HomePage( ChromeDriver driver, Logger log){
         super(driver, log);
     }
     // @FindBy page factoring organization

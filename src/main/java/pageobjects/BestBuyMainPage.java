@@ -9,10 +9,12 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class BestBuyMainPage extends BaseMain {
-    public BestBuyMainPage(ChromeDriver driver) {
-        super(driver);
+    public BestBuyMainPage(ChromeDriver driver, Logger log) {
+
+        super(driver, log);
     }
 
     String domain = "https://www.bestbuy.com/";
