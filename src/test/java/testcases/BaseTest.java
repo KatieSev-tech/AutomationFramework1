@@ -32,13 +32,13 @@ public class BaseTest {
     public void startDriver (@Optional("chrome") String browser ) throws IOException {
         if (browser.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/chromedriver");
-            //ChromeOptions options = new ChromeOptions();
-           // options.addArguments("--remote-allow-origins=*");
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--remote-allow-origins=*");
             driver = new ChromeDriver();
         }
         else if (browser.equalsIgnoreCase("firefox")){
-            System.setProperty("webdriver.gecko.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/geckodriver");
-            driver = new FirefoxDriver();
+           System.setProperty("webdriver.gecko.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/geckodriver");
+           driver = new FirefoxDriver();
         }
         log = Logger.getLogger(getClass().getName());
         saveLogs(log);
