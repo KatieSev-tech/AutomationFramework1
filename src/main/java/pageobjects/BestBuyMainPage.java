@@ -2,7 +2,7 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class BestBuyMainPage extends BaseMain {
-    public BestBuyMainPage(ChromeDriver driver, Logger log) {
+    public BestBuyMainPage(RemoteWebDriver driver, Logger log) {
 
         super(driver, log);
     }

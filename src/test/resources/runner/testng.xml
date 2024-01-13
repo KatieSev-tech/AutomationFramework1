@@ -2,7 +2,16 @@
 
 <suite name="MyFork" verbose="1" >
     <test name="Functional" >
-        
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name ="testcases.EndToEndTestCase">
+
+            </class>
+        </classes>
+    </test>
+
+    <test name="Functional" >
+        <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name ="testcases.EndToEndTestCase">
 

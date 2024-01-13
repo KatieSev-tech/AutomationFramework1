@@ -1,9 +1,6 @@
 package pageobjects;
 
-import dev.failsafe.internal.util.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -12,7 +9,7 @@ public class HomePage extends BaseMain{
 
     BaseMain baseMain = new BaseMain(driver, log); // should provide value to avoid null error
 
-    public HomePage( ChromeDriver driver, Logger log){
+    public HomePage(RemoteWebDriver driver, Logger log){
         super(driver, log);
     }
     // @FindBy page factoring organization

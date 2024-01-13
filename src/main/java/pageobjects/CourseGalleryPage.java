@@ -3,7 +3,7 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class CourseGalleryPage extends BaseMain {
-    public CourseGalleryPage(ChromeDriver driver, Logger log) {
+    public CourseGalleryPage(RemoteWebDriver driver, Logger log) {
         super(driver, log );
     }
 

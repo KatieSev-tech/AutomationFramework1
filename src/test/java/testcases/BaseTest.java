@@ -7,10 +7,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pageobjects.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -29,7 +33,8 @@ public class BaseTest {
     BestBuySearchResultsPage bestBuySearchResultsPage;
 
     @BeforeMethod(groups={"fields","links","webElements", "scenario1", "scenario2", "scenario3"}, alwaysRun = true) //all roles should be configured in any Before condition
-    public void startDriver (@Optional("chrome") String browser ) throws IOException {
+    @Parameters("browser")
+    public void startDriver (@Optional("sauce-chrome") String browser ) throws IOException {
         if (browser.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/chromedriver");
             ChromeOptions options = new ChromeOptions();
@@ -40,16 +45,32 @@ public class BaseTest {
            System.setProperty("webdriver.gecko.driver", "/Users/katerynasevriukova/Documents/Automation/AutomationFramework/src/test/resources/geckodriver");
            driver = new FirefoxDriver();
         }
+
+        else if (browser.equalsIgnoreCase("sauce-chrome")){
+
+            ChromeOptions browserOptions = new ChromeOptions();
+            browserOptions.setPlatformName("Windows 11");
+            browserOptions.setBrowserVersion("latest"); //"latest-1"
+            Map<String, Object> sauceOptions = new HashMap<>();
+            sauceOptions.put("username", "oauth-katie.sevriukova-ed608");
+            sauceOptions.put("accessKey", "1e4a12ed-c9c5-461c-a98c-631105fe61be");
+            sauceOptions.put("build", "selenium-build-OEQIV");
+            sauceOptions.put("name", "First Sauce test");
+            browserOptions.setCapability("sauce:options", sauceOptions);
+
+            URL url = new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"); // url- is sauceLab server
+            driver = new RemoteWebDriver(url, browserOptions);
+        }
         log = Logger.getLogger(getClass().getName());
         saveLogs(log);
-        homePage = new HomePage((ChromeDriver) driver, log);
-        loginPage = new LoginPage((ChromeDriver) driver, log);
-        signUpPage = new SignUpPage((ChromeDriver) driver, log);
-        bestBuyMainPage = new BestBuyMainPage((ChromeDriver) driver, log);
-        courseGalleryPage = new CourseGalleryPage((ChromeDriver) driver, log);
-        sql101BasicsQuiz = new SQL101BasicsQuiz((ChromeDriver) driver, log);
-        bestBuySearchResultsPage = new BestBuySearchResultsPage((ChromeDriver) driver, log);
-        baseMain = new BaseMain((ChromeDriver) driver, log);
+        homePage = new HomePage(driver, log);
+        loginPage = new LoginPage(driver, log);
+        signUpPage = new SignUpPage(driver, log);
+        bestBuyMainPage = new BestBuyMainPage(driver, log);
+        courseGalleryPage = new CourseGalleryPage(driver, log);
+        sql101BasicsQuiz = new SQL101BasicsQuiz(driver, log);
+        bestBuySearchResultsPage = new BestBuySearchResultsPage(driver, log);
+        baseMain = new BaseMain(driver, log);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));

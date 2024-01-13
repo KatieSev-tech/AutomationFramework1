@@ -1,13 +1,13 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.logging.Logger;
 
 public class SignUpPage extends BaseMain {
 
-    public SignUpPage(ChromeDriver driver, Logger log) {
+    public SignUpPage(RemoteWebDriver driver, Logger log) {
         super(driver, log);
     }
 

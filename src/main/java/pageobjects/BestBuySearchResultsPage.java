@@ -1,14 +1,14 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 public class BestBuySearchResultsPage extends BaseMain{
-    public BestBuySearchResultsPage (ChromeDriver driver, Logger log) {
+    public BestBuySearchResultsPage (RemoteWebDriver driver, Logger log) {
 
         super(driver, log);
     }

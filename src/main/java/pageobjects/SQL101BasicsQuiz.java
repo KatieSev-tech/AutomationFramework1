@@ -1,18 +1,12 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.time.Duration;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class SQL101BasicsQuiz extends BaseMain {
-    public SQL101BasicsQuiz(ChromeDriver driver, Logger log) {
+    public SQL101BasicsQuiz(RemoteWebDriver driver, Logger log) {
 
         super(driver, log);
     }
