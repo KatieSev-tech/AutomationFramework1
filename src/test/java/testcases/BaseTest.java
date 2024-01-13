@@ -46,7 +46,7 @@ public class BaseTest {
            driver = new FirefoxDriver();
         }
 
-        else if (browser.equalsIgnoreCase("sauce-chrome")){
+        else if (browser.equalsIgnoreCase("sauce-chrome")) {
 
             ChromeOptions browserOptions = new ChromeOptions();
             browserOptions.setPlatformName("Windows 11");
